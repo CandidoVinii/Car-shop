@@ -31,7 +31,7 @@ const IVehicleSchema = z.object({
     required_error: "Buy value is required",
     invalid_type_error: "Buy value must be a number",
   })
-  .int({ message: 'buy value must be a integer' })
+  .int({ message: "Buy value must be a integer"})
 });
 
 
