@@ -1,6 +1,6 @@
 import { model as mongooseCreateModel, Schema } from 'mongoose';
-import { ICar } from "../interfaces/ICar";
-import MongoModel from "./MongoModel";
+import { ICar } from '../interfaces/ICar';
+import MongoModel from './MongoModel';
 
 const CarModelSchema = new Schema<ICar>({
   model: String,
@@ -14,8 +14,8 @@ const CarModelSchema = new Schema<ICar>({
 
 class CarModel extends MongoModel<ICar> {
   constructor(model = mongooseCreateModel('CarModel', CarModelSchema)) {
-    super(model)
+    super(model);
   }
-};
+}
 
 export default CarModel;
