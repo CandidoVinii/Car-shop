@@ -22,9 +22,7 @@ const IVehicleSchema = z.object({
     })
     .min(3, { message: 'Must be 3 or more characters long' }),
   status: z
-    .boolean({
-      invalid_type_error: 'status must be a boolean'
-    })
+    .boolean({ invalid_type_error: 'status must be a boolean' })
     .optional(),
   buyValue: z
     .number({
@@ -32,7 +30,7 @@ const IVehicleSchema = z.object({
       invalid_type_error: 'Buy value must be a number',
     })
     .int({ message: 'Buy value must be a integer' }),
-});
+}); 
 
 type IVehicle = z.infer<typeof IVehicleSchema>;
 
