@@ -5,7 +5,6 @@ import IService from '../interfaces/IService';
 
 class CarService implements IService<ICar> {
   private _model: IModel<ICar>;
-  private _message = 'Method not implemented.';
 
   constructor(model: IModel<ICar>) {
     this._model = model;
@@ -28,9 +27,11 @@ class CarService implements IService<ICar> {
     if (!carUpdate) throw Error(ErrorTypes.EntityNotFound);
     return carUpdate;
   }
-  public delete(_id: string): Promise<ICar> {
-    this._model.delete(_id);
-    throw new Error(this._message);
+  
+  public async delete(_id: string): Promise<ICar | null> {
+    const deleteCar = await this._model.delete(_id);
+    if (!deleteCar) throw Error(ErrorTypes.EntityNotFound);
+    return deleteCar;
   }
 
   public async create(obj: unknown): Promise<ICar> {
