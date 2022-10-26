@@ -12,12 +12,12 @@ const errorHandler: ErrorRequestHandler = (
     return res.status(400).json({ error: err.issues });
   }
   const messageAsErrorType = err.message as ErrorTypes;
+  console.log(err.message)
   const mappedError = errorCatalog[messageAsErrorType];
   if (mappedError) {
     const { httpStatus, error } = mappedError;
     return res.status(httpStatus).json({ error });
   }
-
   console.error(err);
   return res.status(500).end();
 };

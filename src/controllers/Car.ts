@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { ErrorTypes } from '../errors/catalog';
 import { ICar } from '../interfaces/ICar';
 import IService from '../interfaces/IService';
 

@@ -14,23 +14,23 @@ class CarService implements IService<ICar> {
     const cars = await this._model.read();
     return cars;
   }
-  public async readOne(id: string): Promise<ICar> {
-    const car = await this._model.readOne(id);
+  public async readOne(_id: string): Promise<ICar> {
+    const car = await this._model.readOne(_id);
     if (!car) throw Error(ErrorTypes.EntityNotFound);
     return car;
   }
-  public async update(id: string, obj: unknown): Promise<ICar> { 
+  public async update(_id: string, obj: unknown): Promise<ICar> { 
     const parsed = ICarSchema.safeParse(obj);
     if (!parsed.success) {
       throw parsed.error;
     }
-    const carUpdate = await this._model.update(id, parsed.data);
+    const carUpdate = await this._model.update(_id, parsed.data);
     if (!carUpdate) throw Error(ErrorTypes.EntityNotFound);
     return carUpdate;
   }
   public delete(_id: string): Promise<ICar> {
     this._model.delete(_id);
-    throw new Error();
+    throw new Error(this._message);
   }
 
   public async create(obj: unknown): Promise<ICar> {
