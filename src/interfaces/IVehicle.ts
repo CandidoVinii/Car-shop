@@ -13,8 +13,8 @@ const IVehicleSchema = z.object({
       invalid_type_error: 'Year must be a number',
     })
     .int({ message: 'buy value must be a integer' })
-    .gt(1900, { message: 'that date is very distant' })
-    .lt(2022, { message: 'that date is very distant' }),
+    .gte(1900, { message: 'that date is very distant' })
+    .lte(2022, { message: 'that date is very distant' }),
   color: z
     .string({
       required_error: 'Color is required',

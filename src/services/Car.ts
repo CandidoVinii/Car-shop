@@ -9,9 +9,9 @@ class CarService implements IService<ICar> {
   constructor(model: IModel<ICar>) {
     this._model = model;
   }
-  public read(): Promise<ICar[]> {
-    this._model.read();
-    throw new Error(this._message);
+  public async read(): Promise<ICar[]> {
+    const cars = await this._model.read();
+    return cars;
   }
   public readOne(_id: string): Promise<ICar> {
     this._model.readOne(_id);
