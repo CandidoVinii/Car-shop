@@ -1,3 +1,4 @@
+import { ErrorTypes } from '../errors/catalog';
 import { ICar, ICarSchema } from '../interfaces/ICar';
 import { IModel } from '../interfaces/IModel';
 import IService from '../interfaces/IService';
@@ -13,9 +14,10 @@ class CarService implements IService<ICar> {
     const cars = await this._model.read();
     return cars;
   }
-  public readOne(_id: string): Promise<ICar> {
-    this._model.readOne(_id);
-    throw new Error(this._message);
+  public async  readOne(_id: string): Promise<ICar> {
+    const car = await this._model.readOne(_id);
+    if(!car) throw new Error(ErrorTypes.EntityNotFound)
+    return car;
   }
   public update(_id: string, obj: unknown): Promise<ICar> {
     const parsed = ICarSchema.safeParse(obj);
