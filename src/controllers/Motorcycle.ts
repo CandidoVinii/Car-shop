@@ -5,6 +5,13 @@ import IService from "../interfaces/IService";
 class MotorcycleController {
   constructor(private _service: IService<IMotorcycle>) {}
 
+  public async read(
+    _req: Request,
+    res: Response<IMotorcycle[]>
+  ) {
+    const result = await this._service.read();
+    return res.status(200).json(result);
+  }
   public async create(
     req: Request,
     res: Response<IMotorcycle>

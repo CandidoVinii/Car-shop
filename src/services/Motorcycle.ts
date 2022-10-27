@@ -8,17 +8,10 @@ class MotorcycleService implements IService<IMotorcycle> {
   constructor(model: IModel<IMotorcycle>) {
     this._model = model;
   }
-  read(): Promise<{ status?: boolean | undefined; model: string; year: number; color: string; buyValue: number; category: "Street" | "Custom" | "Trail"; engineCapacity: number; }[]> {
-    throw new Error("Method not implemented.");
-  }
-  readOne(_id: string): Promise<{ status?: boolean | undefined; model: string; year: number; color: string; buyValue: number; category: "Street" | "Custom" | "Trail"; engineCapacity: number; }> {
-    throw new Error("Method not implemented.");
-  }
-  update(_id: string, obj: unknown): Promise<{ status?: boolean | undefined; model: string; year: number; color: string; buyValue: number; category: "Street" | "Custom" | "Trail"; engineCapacity: number; }> {
-    throw new Error("Method not implemented.");
-  }
-  delete(_id: string): Promise<{ status?: boolean | undefined; model: string; year: number; color: string; buyValue: number; category: "Street" | "Custom" | "Trail"; engineCapacity: number; } | null> {
-    throw new Error("Method not implemented.");
+
+  public async read(): Promise<IMotorcycle[]> {
+    const cars = await this._model.read();
+    return cars;
   }
 
   public async create(obj: unknown): Promise<IMotorcycle> {
