@@ -9,8 +9,8 @@ const car = new CarModel();
 const carService = new CarService(car);
 const carController = new CarController(carService);
 
-const pathSearchId = '/cars/:id'
-const patchNormal = '/cars'
+const pathSearchId = '/cars/:id';
+const patchNormal = '/cars';
 
 route.post(patchNormal, (req, res) => carController.create(req, res));
 route.get(patchNormal, (req, res) => carController.read(req, res));
