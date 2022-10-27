@@ -19,14 +19,33 @@ class MotorcycleController {
   ) {
     const { id } = req.params;
     const result = await this._service.readOne(id);
-    return result;
+    return res.status(200).json(result);
   }
+
+  public async update(
+    req: Request,
+    res: Response<IMotorcycle>
+  ) {
+    const { id } = req.params;
+    const result = await this._service.update(id, req.body);
+    return res.status(200).json(result);
+  }
+
   public async create(
     req: Request,
     res: Response<IMotorcycle>
   ) {
     const result = await this._service.create(req.body);
     return res.status(201).json(result);
+  }
+
+  public async delete(
+    req: Request,
+    res: Response<IMotorcycle | null>
+  ) {
+    const { id } = req.params;
+    const result = await this._service.delete(id);
+    return res.status(204).json(result);
   }
 }
 

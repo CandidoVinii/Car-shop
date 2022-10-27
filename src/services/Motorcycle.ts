@@ -21,12 +21,28 @@ class MotorcycleService implements IService<IMotorcycle> {
     return motorcycle;
   }
 
+  public async update(_id: string, obj: unknown): Promise<IMotorcycle> {
+    const parsed = IMotorcycleSchema.safeParse(obj);
+    if (!parsed.success) {
+      throw parsed.error;
+    }
+    const updateMoto = await this._model.update(_id, parsed.data);
+    if (!updateMoto) throw Error(ErrorTypes.EntityNotFound);
+    return updateMoto;
+  }
+
   public async create(obj: unknown): Promise<IMotorcycle> {
     const parsed = IMotorcycleSchema.safeParse(obj);
     if (!parsed.success) {
       throw parsed.error;
     }
     return this._model.create(parsed.data);
+  }
+
+  public async delete(_id: string): Promise<IMotorcycle | null> {
+    const deleteCar = await this._model.delete(_id);
+    if (!deleteCar) throw Error(ErrorTypes.EntityNotFound);
+    return deleteCar;
   }
 
 }
