@@ -1,6 +1,6 @@
 import { model as mongooseCreateModel, Schema } from 'mongoose';
-import { IMotorcycle } from "../interfaces/IMotorcycle";
-import MongoModel from "./MongoModel";
+import { IMotorcycle } from '../interfaces/IMotorcycle';
+import MongoModel from './MongoModel';
 
 const MotorcycleModelSchema = new Schema<IMotorcycle>({
   model: String,
@@ -11,7 +11,6 @@ const MotorcycleModelSchema = new Schema<IMotorcycle>({
   category: String,
   engineCapacity: Number,
 }, { versionKey: false });
-
 
 class MotorcycleModel extends MongoModel<IMotorcycle> {
   constructor(model = mongooseCreateModel('MotorcycleModel', MotorcycleModelSchema)) {

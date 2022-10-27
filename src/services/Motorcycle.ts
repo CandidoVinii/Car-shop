@@ -1,7 +1,7 @@
-import { ErrorTypes } from "../errors/catalog";
-import { IModel } from "../interfaces/IModel";
-import { IMotorcycle, IMotorcycleSchema } from "../interfaces/IMotorcycle";
-import IService from "../interfaces/IService";
+import { ErrorTypes } from '../errors/catalog';
+import { IModel } from '../interfaces/IModel';
+import { IMotorcycle, IMotorcycleSchema } from '../interfaces/IMotorcycle';
+import IService from '../interfaces/IService';
 
 class MotorcycleService implements IService<IMotorcycle> {
   private _model: IModel<IMotorcycle>;
@@ -44,7 +44,6 @@ class MotorcycleService implements IService<IMotorcycle> {
     if (!deleteCar) throw Error(ErrorTypes.EntityNotFound);
     return deleteCar;
   }
-
 }
 
-export default MotorcycleService
+export default MotorcycleService;
