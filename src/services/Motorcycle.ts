@@ -1,3 +1,4 @@
+import { ErrorTypes } from "../errors/catalog";
 import { IModel } from "../interfaces/IModel";
 import { IMotorcycle, IMotorcycleSchema } from "../interfaces/IMotorcycle";
 import IService from "../interfaces/IService";
@@ -10,8 +11,14 @@ class MotorcycleService implements IService<IMotorcycle> {
   }
 
   public async read(): Promise<IMotorcycle[]> {
-    const cars = await this._model.read();
-    return cars;
+    const motorcycles = await this._model.read();
+    return motorcycles;
+  }
+
+  public async readOne(_id: string): Promise<IMotorcycle> {
+    const motorcycle = await this._model.readOne(_id);
+    if (!motorcycle) throw Error(ErrorTypes.EntityNotFound);
+    return motorcycle;
   }
 
   public async create(obj: unknown): Promise<IMotorcycle> {
