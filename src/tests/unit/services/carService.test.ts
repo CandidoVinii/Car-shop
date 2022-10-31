@@ -81,4 +81,8 @@ describe('Car service', () => {
     expect(car).to.be.deep.eq(carMockWithId);
   });
 
+  it('delete car by id', async () => {
+    const car = await serviceCar.delete(carMockWithId._id);
+    expect(car).to.be.deep.eq(carMockWithId);
+  });
 });
